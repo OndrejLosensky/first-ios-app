@@ -8,14 +8,37 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var barevneSChema = "Světlý režim"
+    @State var x = true
+    @State var barva = ColorScheme.light
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        NavigationView {
+        Button(
+            action: {
+                if x == true {
+                    barevneSChema = "Tmavý režim"
+                    barva = .dark
+                    self.x.toggle()
+                } else {
+                    barevneSChema = "Světlý režim"
+                    barva = .light
+                    self.x.toggle()
+                }
+                    
+            },
+            label:{ Text("Změň barevné schéma aplikace")
+                    .foregroundColor(.white)
+                    .font(.system(size: 16))
+                    .padding(20)
+                    .background(Color.red)
+                    .cornerRadius(60)
+                
+                
+            }
+        )
+        .navigationTitle(barevneSChema)
+    }
+        .preferredColorScheme(barva)
     }
 }
 
